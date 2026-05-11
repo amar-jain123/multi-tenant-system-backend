@@ -179,37 +179,3 @@ All data queries are automatically scoped to the authenticated tenant.
 npm test           # Run all tests with coverage
 npm test -- --watch  # Watch mode
 ```
-
-## 📊 Database Schema
-
-- **tenants** — Organizations (slug, plan, settings)
-- **users** — Users with tenant isolation + RBAC
-- **refresh_tokens** — Hashed refresh tokens
-- **api_keys** — Scoped API keys (hashed)
-- **projects** — Projects with owner + status
-- **project_members** — M2M with roles
-- **tasks** — Full task model with subtask support
-- **task_comments** — Task discussions
-- **webhooks** — Event subscriptions with HMAC
-- **webhook_deliveries** — Delivery log
-- **audit_logs** — Full mutation history
-
-## 🌿 Environment Variables
-
-See `.env.example` for full list. Key variables:
-
-```env
-DATABASE_URL or DB_HOST/PORT/NAME/USER/PASSWORD
-REDIS_HOST, REDIS_PORT
-JWT_SECRET, JWT_REFRESH_SECRET
-JWT_EXPIRES_IN=15m, JWT_REFRESH_EXPIRES_IN=7d
-```
-
-## 📝 Resume Bullet Points
-
-- Built production-ready multi-tenant REST API with Node.js, Express, and PostgreSQL supporting full tenant data isolation for SaaS applications
-- Implemented JWT auth with 15-minute access tokens, 7-day refresh token rotation, and Redis-based token blacklisting for secure logout
-- Designed role-based access control (RBAC) system with 4 privilege tiers (admin/manager/member/viewer) enforced at middleware level
-- Built async webhook delivery system with HMAC-SHA256 request signing, retry logic, delivery history, and automatic deactivation after 10 failures
-- Optimized database queries with PostgreSQL connection pooling, Redis caching layer, and strategic indexes reducing response times
-- Containerized application with Docker and docker-compose including PostgreSQL, Redis, and pgAdmin services
